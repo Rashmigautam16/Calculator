@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>masai calculator</title>
+    <style>
+        
+    #heading{
+        
+        width: 700px;
+        margin: auto;
+        text-align: center;
+        font-size: 30px;
+        color: teal;
+        }
+     #container{
+        border: 0px solid black;
+        padding-top: 20px;
+        width: 500px;
+        height: 600px;
+        margin: auto;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    #container>div:nth-child(1){
+        
+        width: 380px;
+        height: 80px;
+        margin: auto;
+        border-radius: 10px;
+       margin-top: 50px;
+       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+       display: flex;
+       justify-content: center;
+       font-size: 40px;
+     }
+     #container>div:nth-child(1):hover{
+         background-color: #ede7f6;
+     }
+    #key{
+       
+        width: 500px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4,80px);
+        grid-template-rows: repeat(4,80px);
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+    } 
+    #key>div{
+        text-align: center;
+        font:bold;
+        font-size: 25px;
+        padding-top: 25px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;
+    }
+    #key>div:nth-child(4),div:nth-child(8),div:nth-child(12),div:nth-child(15),div:nth-child(16){
+        color: white;
+        background-color: black;
+    }
+    #key>div:nth-child(13){
+        color: white;
+        background-color: red;
+    }
+    #key>div:hover{
+        background-color: rgb(193, 239, 239);
+    }
+    #display{
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="heading">
+        <h1>Masai Calculator</h1>
+    </div>
+    <div id="container">
+        <div id="display"></div>
+        <div id="key">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>+</div>
+          
+          
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>-</div>
+
+          
+          <div>7</div>
+          <div>8</div>
+          <div>9</div>
+          <div>*</div>
+
+          
+          <div>C</div>
+          <div>0</div>
+          <div>=</div>
+          <div>/</div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    let keys=document.querySelectorAll("#key>div");
+    let bag="";
+
+    for(let i=0; i<keys.length; i++){
+        keys[i].addEventListener("click", mycalculator);
+    }
+    function mycalculator(event){
+        let targetNumber= event.target.innerText;
+       
+        if(targetNumber=="C"){
+            bag="";
+          document.querySelector("#display").innerText ="";
+       }else if(targetNumber=="="){
+           document.querySelector("#display").innerText=eval(bag)
+           if(bag==""){
+            document.querySelector("#display").innerText ="0";  
+           }
+       }else{
+           bag=bag+targetNumber
+           document.querySelector("#display").innerText=(bag);
+       }
+    }
+</script>
